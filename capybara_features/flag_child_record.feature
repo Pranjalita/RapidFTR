@@ -25,8 +25,6 @@ Feature:
     When I am on the children listing page
     Then I should see "Flagged By"
 
-#    And I follow "View All Children"
-#    Then I should see flagged details
   @javascript
   Scenario: Removing flag from a child record
     Given I flag "Peter" as suspect

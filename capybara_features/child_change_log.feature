@@ -43,7 +43,7 @@ Feature:
     And I follow "Change Log" span
     Then I should see change log for record flag by "bob" for "He is a bad guy."
 
-#  @javascript
+
   @run
   Scenario: Adding an image
 
@@ -53,6 +53,5 @@ Feature:
     When I follow "Edit"
     And I follow "Photos and Audio"
     And I should blah
-#    And I wait for 5 seconds
     And I attach a photo "capybara_features/resources/jorge.jpg"
     And I submit the form

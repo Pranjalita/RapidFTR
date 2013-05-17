@@ -11,7 +11,6 @@ Then /^I should see the "([^\"]*)" section with(out)? an enabled checkbox$/ do |
 end
 
 Then /^I should see "([^\"]*)" with order of "([^\"]*)"$/ do |section_name, form_order|
-  #row_for(section_name).find("//span[@class='formSectionOrder']").text.should == form_order
   page.should have_xpath("//table[@id='form_sections']/tbody/tr[#{form_order}]/td/a[text()='#{section_name}']")
 end
 
@@ -20,7 +19,6 @@ Then /^I should see the following form sections in this order:$/ do |table|
 end
 
 Then /^I should see the description text "([^\"]*)" for form section "([^\"]*)"$/ do |expected_description, form_section|
-  #row_for(form_section).should have_css("td:nth-child(2)", :text => expected_description)
   row_for(form_section).should have_xpath("//td[text()='#{expected_description}']")
 end
 
@@ -29,9 +27,6 @@ Then /^I should see the name "([^\"]*)" for form section "([^\"]*)"$/ do |expect
 end
 
 Then /^the form section "([^"]*)" should be listed as (visible|hidden)$/ do |form_section, visibility|
-  #within row_xpath_for(form_section) do
-  #  page.should have_css("td[3] input", :checked  => (visibility == 'hidden'))
-  #end
   checkbox = page.find("//a[@class='formSectionLink' and contains(., '#{form_section}')]/ancestor::tr/td[3]/input[@class='field_hide_show']")
   if visibility == 'hidden'
     checkbox.should be_checked
@@ -72,13 +67,6 @@ Then /^I should be able to demote the field "([^"]*)"$/ do |field|
 end
 
 When /^I demote field "([^"]*)"$/ do |field|
-  ##find(:css, "a##{field}_down").click
-  ##drag = page.find("//tr[@data='#{field}']")
-  #drag = page.find("//tr[@data='name']")
-  #drop = page.find("//tr[@data='second_name']")
-  #drag.drag_to(drop)
-
-  #http://your.bucket.s3.amazonaws.com/jquery.simulate.drag-sortable.js
   page.execute_script %{
     $.getScript("https://github.com/mattheworiordan/jquery.simulate.drag-sortable.js/blob/master/jquery.simulate.drag-sortable.js", function() {
       $("tr[data=\'\'#{field}\'\']").simulateDragSortable({ move: 1});

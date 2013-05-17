@@ -28,21 +28,13 @@ When /^(?:|I )press "([^\"]*)"(?: within "([^\"]*)")?$/ do |button, selector|
   end
 end
 
-#  When /^(?:|I )select "([^\"]*)"(?: within "([^\"]*)")?$/ do |button, selector|
-#  with_scope(selector) do
-#    find("//input[@class='btn_submit']").click
-#  end
-#end
-
 When /^I search$/ do
-  #page.execute_script("$('input[value=\"#{Search}\"]').click();")
   find("//input[@value='Search']").click
 end
 
 When /^(?:|I )(?:can )?follow "([^\"]*)"(?: within "([^\"]*)")?$/ do |link, selector|
   with_scope(selector) do
     click_link(link)
-  #find(:xpath, "//span[@class='export']").click
   end
 end
 
@@ -89,7 +81,6 @@ end
 
 # TODO: Add support for checkbox, select og option
 # based on naming conventions.
-#
 When /^(?:|I )fill in the following(?: within "([^\"]*)")?:$/ do |selector, fields|
   with_scope(selector) do
     fields.rows_hash.each do |name, value|
@@ -353,3 +344,5 @@ end
 When /^I can download the "([^"]*)"$/ do |item|
   find("//a[@id='"+item+"']").click
 end
+
+
